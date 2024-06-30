@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>Transaction List</mat-card-title>
+  <mat-card-content>
+    <div class="filter-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Filter by description</mat-label>
+        <input matInput (input)="applyFilter($event)">
+      </mat-form-field>
+      <button mat-raised-button (click)="sort('description')">Sort by Description</button>
+      <button mat-raised-button (click)="sort('amount')">Sort by Amount</button>
+    </div>
+
+    <mat-card *ngFor="let transaction of filteredTransactions" class="transaction-card">
+      <mat-card-content>
+        <h3>{{ transaction.description }}</h3>
+        <p>{{ transaction.amount | currency }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
