@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-title>Add Transaction</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+        <mat-error *ngIf="transactionForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput formControlName="amount" type="number">
+        <mat-error *ngIf="transactionForm.get('amount')?.hasError('required')">
+          Amount is required
+        </mat-error>
+        <mat-error *ngIf="transactionForm.get('amount')?.hasError('pattern')">
+          Invalid amount format
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid">Add Transaction</button>
+    </form>
+  </mat-card-content>
+</mat-card>
